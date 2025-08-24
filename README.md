@@ -1,18 +1,18 @@
 This is currently the only working optimizer for aptitude ai aimbot. Here are the current Features
 
-    Game Support: 
+Game Support: 
       Call Of Duty
       Rainbow Six Siege
 
-    Overlay Support:
+Overlay Support:
       Cloudpanel
       Legacy
       New
 
-    Cloudpanel Browser Support:
+Cloudpanel Browser Support:
       Opera Gx
 
-    Future Roadmap:
+Future Roadmap:
       Auto Browser Support
       Gui Improvements
       Fortnite Support
