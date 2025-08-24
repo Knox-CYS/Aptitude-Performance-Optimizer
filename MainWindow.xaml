@@ -1,0 +1,136 @@
+<Window x:Class="AimbotConfig.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Aptitude Optimizer" Height="450" Width="600"
+        Background="#2F2F2F" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="MainTabControl" Grid.Row="0" Margin="5" Background="#2F2F2F">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Background" Value="#4A4A4A"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Margin" Value="0,0,2,0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="#4A4A4A" BorderThickness="1" CornerRadius="3,3,0,0">
+                                    <ContentPresenter ContentSource="Header" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#1E90FF"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#A9A9A9"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#D3D3D3"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#808080"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#696969"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="OptimizerButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Height" Value="80"/>
+                    <Setter Property="Width" Value="300"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Margin" Value="0,10,0,10"/>
+                </Style>
+                <Style x:Key="OverlayButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Width" Value="120"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Margin" Value="10,2"/>
+                </Style>
+                <Style x:Key="BackButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Width" Value="60"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Margin" Value="0,0,0,5"/>
+                </Style>
+                <Style x:Key="ResetButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Margin" Value="0,10,0,0"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem x:Name="OptimizersTab" Header="Optimizers" IsSelected="True">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+                    <StackPanel x:Name="OptimizersPanel" Margin="0" HorizontalAlignment="Center" Background="#2F2F2F">
+                        <!-- Call of Duty Optimizer -->
+                        <Button x:Name="CodOptimizerButton" Content="Call of Duty Optimizer" Style="{StaticResource OptimizerButtonStyle}" Click="CodOptimizerButton_Click"/>
+                        <!-- Rainbow Six Siege Optimizer -->
+                        <Button x:Name="R6OptimizerButton" Content="Rainbow Six Siege Optimizer" Style="{StaticResource OptimizerButtonStyle}" Click="R6OptimizerButton_Click"/>
+                        <!-- Back Button -->
+                        <Button x:Name="BackButton" Content="Back" Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" Visibility="Collapsed" HorizontalAlignment="Center"/>
+                        <!-- Call of Duty Overlay Panel -->
+                        <StackPanel x:Name="CodOverlayPanel" Visibility="Collapsed" Margin="0,0,0,10" HorizontalAlignment="Center">
+                            <TextBlock Text="Overlay type" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="CodNewButton" Content="New" Style="{StaticResource OverlayButtonStyle}" Click="CodOverlayButton_Click"/>
+                                <Button x:Name="CodCloudpanelButton" Content="Cloudpanel" Style="{StaticResource OverlayButtonStyle}" Click="CodOverlayButton_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- Rainbow Six Siege Overlay Panel -->
+                        <StackPanel x:Name="R6OverlayPanel" Visibility="Collapsed" Margin="0,0,0,10" HorizontalAlignment="Center">
+                            <TextBlock Text="Overlay type" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="R6LegacyButton" Content="Legacy" Style="{StaticResource OverlayButtonStyle}" Click="R6OverlayButton_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button x:Name="RunButton" Content="Run" Width="100" Height="30" Click="RunButton_Click" IsEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,20,0,10"/>
+                        <Button x:Name="ResetOptimizationsButton" Content="Reset Optimizations" Style="{StaticResource ResetButtonStyle}" Click="ResetOptimizationsButton_Click" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="AboutTab" Header="About">
+                <TextBlock Margin="10" TextWrapping="Wrap" Foreground="White" FontSize="14">
+                    <Run FontWeight="Bold">Aptitude Optimizer</Run><LineBreak/>
+                    <Run>Version 4.0</Run><LineBreak/>
+                    <Run>Developed to optimize system performance for Aptitude Ai Aimbot Performance</Run><LineBreak/>
+                    <Run>Features:</Run><LineBreak/>
+                    <Run>- Optimizes power plans and GPU settings</Run><LineBreak/>
+                    <Run>- Disables non-essential services</Run><LineBreak/>
+                    <Run>- Adjusts process priorities</Run><LineBreak/>
+                    <Run FontWeight="Bold">Instructions:</Run><LineBreak/>
+                    <Run>Run this application as Administrator. Select an optimizer, choose an overlay type in the Optimizers tab, and click 'Run' to apply settings. Use the 'Back' button to return to optimizer selection if needed. Click 'Reset Optimizations' to undo all changes. Ensure games and aimbot are running before running.</Run>
+                </TextBlock>
+            </TabItem>
+        </TabControl>
+        <ProgressBar x:Name="ProgressBar" Grid.Row="1" Height="20" Visibility="Hidden" IsIndeterminate="True" Background="#4A4A4A" Foreground="#1E90FF"/>
+        <StackPanel x:Name="DonePanel" Grid.Row="1" Orientation="Horizontal" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Done" Foreground="White" FontSize="16" Margin="5"/>
+            <Button x:Name="OkButton" Content="OK" Click="OkButton_Click" Width="50" Height="30" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
