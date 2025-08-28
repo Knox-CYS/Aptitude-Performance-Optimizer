@@ -11,10 +11,9 @@ Overlay Support:
 
 Cloudpanel Browser Support:
       Opera Gx
+      Chrome
 
 Future Roadmap:
-      Auto Browser Support
-      Gui Improvements
       Fortnite Support
       Marvel Rivals Support
 
